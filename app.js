@@ -109,6 +109,7 @@ function updateCartBadge() {
     if(cafeBadge) cafeBadge.innerText = count;
 }
 
+// FIX: Menampilkan nama Naqib secara automatik jika datang dari profile user activity
 function openCart() {
     let container = document.getElementById('cart-items-container');
     let emptyMsg = document.getElementById('empty-cart-msg');
@@ -180,6 +181,7 @@ function removeFromCart(id) {
     openCart(); 
 }
 
+// FIX: Menambah notifikasi tempahan berjaya dihantar
 function checkoutCafe(cafeName) {
     alert(`Pesanan berjaya dihantar ke ${cafeName}! Sila tunggu Rider anda.`);
     cart = cart.filter(item => item.cafe !== cafeName);
@@ -266,7 +268,6 @@ function processLogin(event, role) {
     checkSavedSession(); 
 }
 
-// FIX: Tetamu (Guest) kini akan melompat terus ke Halaman Utama tanpa disekat oleh checkSavedSession
 function processGuest(role) {
     localStorage.setItem("poliku_role", role);
     localStorage.setItem("poliku_logged_in", "false"); 
