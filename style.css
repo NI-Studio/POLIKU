@@ -680,3 +680,20 @@ body {
 .page.auth-page {
     min-height: 100dvh !important;
 }
+
+/* ================= RAPATKAN JARAK BUTANG DI HALAMAN LOG MASUK ================= */
+
+/* Tarik bahagian 'Belum ada akaun' naik supaya rapat dengan 'Teroka' */
+.auth-footer {
+    margin-top: 10px !important; /* Asalnya 30px, kita kurangkan */
+}
+
+/* Kurangkan sikit ruang pada garisan 'atau' supaya butang Home naik ke atas */
+.divider {
+    margin: 15px 0 !important; /* Asalnya 20px */
+}
+
+/* Rapatkan sedikit jarak antara input, butang Log Masuk dan teks Teroka */
+.auth-form {
+    gap: 12px !important; /* Asalnya 15px */
+}
