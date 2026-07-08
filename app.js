@@ -325,3 +325,25 @@ function closeDevAlert() {
     const alertBox = document.getElementById('dev-alert');
     if(alertBox) alertBox.style.display = 'none';
 }
+
+// ================= FUNGSI BARU: CARIAN KAFE =================
+function searchCafe() {
+    // Ambil perkataan yang ditaip oleh pengguna
+    let input = document.getElementById('search-input').value.toLowerCase();
+    
+    // Ambil semua kad kafe
+    let cafes = document.querySelectorAll('.cafe-item');
+
+    // Semak setiap kad kafe
+    cafes.forEach(cafe => {
+        // Gabungkan semua teks dalam kad (Nama Kafe, Menu, Rating)
+        let text = cafe.innerText.toLowerCase();
+        
+        // Jika teks ada persamaan dengan apa yang ditaip, tunjukkan. Jika tidak, sembunyikan.
+        if (text.includes(input)) {
+            cafe.style.display = 'block';
+        } else {
+            cafe.style.display = 'none';
+        }
+    });
+}
