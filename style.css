@@ -662,3 +662,20 @@ body {
 .btn-premium-outline.user-outline:hover {
     background: #fff0f1; /* Warna latar belakang lembut bila ditekan/sentuh */
 }
+
+/* ================= TETAPAN DYNAMIC VIEWPORT (FIX SEARCH BAR BROWSER) ================= */
+
+/* Kita gunakan dvh (dynamic viewport height) supaya ukuran ikut skrin yang kelihatan sahaja */
+body {
+    min-height: 100dvh !important;
+}
+
+.app-container, 
+.page.main-app-page, 
+#welcome-page {
+    height: 100dvh !important;
+}
+
+.page.auth-page {
+    min-height: 100dvh !important;
+}
