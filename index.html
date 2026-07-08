@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Poliku - Food Delivery (User, Vendor & Rider)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- ================= SPLASH SCREEN ================= -->
+        <div id="splash-screen" class="page active splash-bg">
+            <div class="splash-content">
+                <div class="logo-container">
+                    <i class="fa-solid fa-motorcycle splash-icon"></i>
+                </div>
+                <h1 class="splash-title">Poliku</h1>
+                <p class="splash-subtitle">Penghantaran Pantas, Perut Puas</p>
+                <div class="loading-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ONBOARDING / WELCOME PAGE ================= -->
+        <div id="welcome-page" class="page auth-page">
+            <div class="welcome-header">
+                <div class="welcome-illustration">
+                    <i class="fa-solid fa-burger" style="color: #ff4757; font-size: 50px; position: absolute; top: 20%; left: 20%; transform: rotate(-15deg);"></i>
+                    <i class="fa-solid fa-pizza-slice" style="color: #ffa502; font-size: 60px; position: absolute; top: 40%; right: 15%; transform: rotate(15deg);"></i>
+                    <i class="fa-solid fa-motorcycle" style="color: #0984e3; font-size: 45px; position: absolute; bottom: 20%; left: 30%;"></i>
+                    <div class="circle-bg"></div>
+                </div>
+            </div>
+            
+            <div class="welcome-body glass-effect">
+                <h2>Selamat Datang ke <span style="color: #ff4757;">Poliku</span></h2>
+                <p>Pilih peranan anda untuk bermula hari ini.</p>
+                
+                <div class="welcome-buttons">
+                    <button class="btn-premium" onclick="navigateTo('login-page')">
+                        <i class="fa-solid fa-user"></i> Teroka Makanan (Pelanggan)
+                    </button>
+                    <button class="btn-premium-outline" onclick="navigateTo('vendor-login-page')">
+                        <i class="fa-solid fa-store"></i> Urus Kedai (Vendor)
+                    </button>
+                    <button class="btn-premium-outline rider-outline" onclick="navigateTo('rider-login-page')">
+                        <i class="fa-solid fa-helmet-safety"></i> Rakan Penghantar (Rider)
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ================= HALAMAN LOG MASUK (PELANGGAN) ================= -->
+        <div id="login-page" class="page auth-page">
+            <div class="auth-header">
+                <i class="fa-solid fa-user auth-logo" style="color:#ff4757;"></i>
+                <h1>Poliku User</h1>
+                <p>Penghantaran Pantas, Perut Puas</p>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('home-page');">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="E-mel" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Kata Laluan" required>
+                </div>
+                <div class="forgot-link">
+                    <a href="#" onclick="navigateTo('forgot-page')">Lupa Kata Laluan?</a>
+                </div>
+                <button type="submit" class="btn-primary">Log Masuk</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Belum ada akaun? <a href="#" onclick="navigateTo('register-page')">Daftar Sekarang</a></p>
+                <div class="divider">atau</div>
+                <button class="btn-back-home user-style" onclick="navigateTo('welcome-page')">
+                    <i class="fa-solid fa-house"></i> Kembali ke Halaman Utama
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN DAFTAR (PELANGGAN) ================= -->
+        <div id="register-page" class="page auth-page">
+            <div class="auth-header">
+                <h2>Daftar Akaun Baru</h2>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('login-page');">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Nama Penuh" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="E-mel" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" placeholder="No. Telefon" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Kata Laluan" required>
+                </div>
+                <button type="submit" class="btn-primary">Daftar</button>
+            </form>
+            <div class="auth-footer">
+                <p>Sudah ada akaun? <a href="#" onclick="navigateTo('login-page')">Log Masuk</a></p>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN LUPA KATA LALUAN ================= -->
+        <div id="forgot-page" class="page auth-page">
+            <div class="auth-header">
+                <h2>Lupa Kata Laluan</h2>
+                <p>Masukkan e-mel anda.</p>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); alert('Pautan dihantar!'); navigateTo('login-page');">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="E-mel" required>
+                </div>
+                <button type="submit" class="btn-primary">Hantar Pautan</button>
+            </form>
+            <div class="auth-footer">
+                <p><a href="#" onclick="navigateTo('login-page')"><i class="fa-solid fa-arrow-left"></i> Kembali</a></p>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN LOG MASUK (VENDOR) ================= -->
+        <div id="vendor-login-page" class="page auth-page">
+            <div class="auth-header">
+                <i class="fa-solid fa-store auth-logo vendor-color"></i>
+                <h1>Poliku Vendor</h1>
+                <p>Urus kedai dan pesanan anda</p>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('vendor-dashboard-page');">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="E-mel Rasmi Kedai" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Kata Laluan" required>
+                </div>
+                <button type="submit" class="btn-primary btn-vendor" style="margin-top:20px;">Log Masuk Vendor</button>
+            </form>
+            <div class="auth-footer">
+                <p>Belum daftar kedai? <a href="#" class="vendor-text" onclick="navigateTo('vendor-register-page')">Daftar Vendor</a></p>
+                <div class="divider">atau</div>
+                <button class="btn-back-home vendor-style" onclick="navigateTo('welcome-page')">
+                    <i class="fa-solid fa-house"></i> Kembali ke Halaman Utama
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN DAFTAR (VENDOR) ================= -->
+        <div id="vendor-register-page" class="page auth-page">
+            <div class="auth-header">
+                <h2 class="vendor-text">Daftar Rakan Vendor</h2>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('vendor-login-page');">
+                <div class="input-group"><i class="fa-solid fa-store"></i><input type="text" placeholder="Nama Kedai" required></div>
+                <div class="input-group"><i class="fa-solid fa-phone"></i><input type="tel" placeholder="No. Telefon Kedai" required></div>
+                <div class="input-group"><i class="fa-solid fa-envelope"></i><input type="email" placeholder="E-mel" required></div>
+                <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" placeholder="Kata Laluan" required></div>
+                <button type="submit" class="btn-primary btn-vendor">Daftar Kedai</button>
+            </form>
+            <div class="auth-footer">
+                <p>Sudah ada kedai? <a href="#" class="vendor-text" onclick="navigateTo('vendor-login-page')">Log Masuk</a></p>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN LOG MASUK (RIDER) ================= -->
+        <div id="rider-login-page" class="page auth-page">
+            <div class="auth-header">
+                <i class="fa-solid fa-helmet-safety auth-logo rider-color"></i>
+                <h1>Poliku Rider</h1>
+                <p>Jana pendapatan dengan menghantar makanan</p>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('rider-dashboard-page');">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="E-mel Rider" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Kata Laluan" required>
+                </div>
+                <button type="submit" class="btn-primary btn-rider" style="margin-top:20px;">Log Masuk Rider</button>
+            </form>
+            <div class="auth-footer">
+                <p>Belum jadi rider? <a href="#" class="rider-text" onclick="navigateTo('rider-register-page')">Daftar Rider</a></p>
+                <div class="divider">atau</div>
+                <button class="btn-back-home rider-style" onclick="navigateTo('welcome-page')">
+                    <i class="fa-solid fa-house"></i> Kembali ke Halaman Utama
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN DAFTAR (RIDER) ================= -->
+        <div id="rider-register-page" class="page auth-page">
+            <div class="auth-header">
+                <h2 class="rider-text">Daftar Rakan Rider</h2>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('rider-login-page');">
+                <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" placeholder="Nama Penuh" required></div>
+                <div class="input-group"><i class="fa-solid fa-id-card"></i><input type="text" placeholder="No. Kad Pengenalan" required></div>
+                <div class="input-group"><i class="fa-solid fa-motorcycle"></i><input type="text" placeholder="No. Plat Motosikal" required></div>
+                <div class="input-group"><i class="fa-solid fa-phone"></i><input type="tel" placeholder="No. Telefon" required></div>
+                <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" placeholder="Kata Laluan" required></div>
+                <button type="submit" class="btn-primary btn-rider">Daftar Rider</button>
+            </form>
+            <div class="auth-footer">
+                <p>Sudah daftar? <a href="#" class="rider-text" onclick="navigateTo('rider-login-page')">Log Masuk</a></p>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN UTAMA (PELANGGAN) ================= -->
+        <div id="home-page" class="page main-app-page">
+            <div class="home-header">
+                <div class="user-info">
+                    <h3>Hai, Naqib! 👋</h3>
+                    <p>Nak makan apa hari ini?</p>
+                </div>
+                <i class="fa-solid fa-bell notification-icon"></i>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Cari makanan atau restoran...">
+            </div>
+
+            <div class="content-section">
+                <h4>Kategori Pilihan</h4>
+                <div class="category-scroll">
+                    <div class="category-card"><i class="fa-solid fa-bowl-rice"></i><span>Nasi</span></div>
+                    <div class="category-card"><i class="fa-solid fa-burger"></i><span>Fast Food</span></div>
+                    <div class="category-card"><i class="fa-solid fa-mug-hot"></i><span>Minuman</span></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Vendor Berdekatan</h4>
+                <div class="vendor-list">
+                    <div class="vendor-card">
+                        <div class="vendor-img" style="background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);"></div>
+                        <div class="vendor-details">
+                            <h5>Restoran Nasi Kandar Padu</h5>
+                            <p><i class="fa-solid fa-star"></i> 4.8 | 15 min | Percuma Penghantaran</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-receipt"></i></div>
+                <div class="nav-item" onclick="navigateTo('login-page')"><i class="fa-solid fa-right-from-bracket"></i></div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN UTAMA (VENDOR) ================= -->
+        <div id="vendor-dashboard-page" class="page main-app-page">
+            <div class="home-header vendor-bg">
+                <div class="user-info">
+                    <h3>Nasi Kandar Padu</h3>
+                    <p>Status: <span style="color: #d4edda; font-weight:bold;">Dibuka 🟢</span></p>
+                </div>
+                <i class="fa-solid fa-gear notification-icon"></i>
+            </div>
+            
+            <div class="content-section" style="margin-top: 20px;">
+                <h4>Pesanan Baru (1)</h4>
+                <div class="vendor-list">
+                    <div class="vendor-card" style="padding: 15px; border-left: 5px solid #ff9f43;">
+                        <h5>Order #1024</h5>
+                        <p>2x Nasi Kandar Ayam</p>
+                        <button class="btn-primary btn-vendor" style="padding: 8px; margin-top: 10px; font-size: 13px;">Terima Pesanan</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active vendor-text"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-utensils"></i></div>
+                <div class="nav-item" onclick="navigateTo('vendor-login-page')"><i class="fa-solid fa-right-from-bracket"></i></div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN UTAMA (RIDER) ================= -->
+        <div id="rider-dashboard-page" class="page main-app-page">
+            <div class="home-header rider-bg">
+                <div class="user-info">
+                    <h3>Hai, Ahmad (Rider)</h3>
+                    <p>Status: <span style="color: #d4edda; font-weight:bold;">Online 🟢</span></p>
+                </div>
+                <i class="fa-solid fa-motorcycle notification-icon"></i>
+            </div>
+            
+            <div class="content-section" style="margin-top: 20px;">
+                <h4>Tugasan Baru (1)</h4>
+                <div class="vendor-list">
+                    <div class="vendor-card" style="padding: 15px; border-left: 5px solid #0984e3;">
+                        <h5>Ambil: Nasi Kandar Padu</h5>
+                        <p>Hantar: Puncak Alam, Selangor</p>
+                        <p><strong>Anggaran Upah: RM 5.00</strong></p>
+                        <button class="btn-primary btn-rider" style="padding: 8px; margin-top: 10px; font-size: 13px;">Terima Tugasan</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active rider-text"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-wallet"></i></div>
+                <div class="nav-item" onclick="navigateTo('rider-login-page')"><i class="fa-solid fa-right-from-bracket"></i></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
