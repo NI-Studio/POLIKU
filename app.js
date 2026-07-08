@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
         checkSavedSession(); 
     }, 2500);
 
-    // Logik interaktif untuk butang Navigasi Bawah
     const navItems = document.querySelectorAll(".nav-item, .nav-item-premium");
     navItems.forEach(item => {
         item.addEventListener("click", function() {
-            if (!this.innerHTML.includes('fa-right-from-bracket')) {
-                let siblings = this.parentElement.querySelectorAll(".nav-item, .nav-item-premium");
-                siblings.forEach(nav => nav.classList.remove("active"));
-                this.classList.add("active");
+            const onclickAttr = this.getAttribute('onclick');
+            if (onclickAttr) {
+                const targetIdMatch = onclickAttr.match(/'([^']+)'/);
+                if(targetIdMatch && targetIdMatch[1]) {
+                    // Biarkan fungsi navigateTo ambil alih
+                }
             }
         });
     });
@@ -19,20 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ================= FUNGSI 1: NAVIGASI HALAMAN & SMART SYNC MENU =================
 function navigateTo(targetPageId) {
-    // Tukar Halaman
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
     
     const targetPage = document.getElementById(targetPageId);
     if (targetPage) targetPage.classList.add('active');
 
-    // FIX: Automatik Sync Menu Bawah ke Halaman Semasa
     const allNavItems = document.querySelectorAll(".nav-item, .nav-item-premium");
-    
-    // Buang warna aktif pada semua butang
     allNavItems.forEach(nav => nav.classList.remove('active'));
     
-    // Tambah warna aktif HANYA pada butang yang menghala ke halaman ini
     allNavItems.forEach(nav => {
         let onclickAttr = nav.getAttribute('onclick');
         if (onclickAttr && onclickAttr.includes(targetPageId)) {
@@ -41,31 +37,26 @@ function navigateTo(targetPageId) {
     });
 }
 
-
 // ================= FUNGSI 2: FILTER KATEGORI =================
 function filterCategory(category) {
-    // Tukar warna butang kategori aktif (Menggunakan .cat-pill untuk rekaan premium)
     document.querySelectorAll('.cat-pill').forEach(card => card.classList.remove('active'));
     document.getElementById('cat-' + category).classList.add('active');
 
-    // Tapis senarai kafe
     const cafes = document.querySelectorAll('.cafe-item');
     cafes.forEach(cafe => {
         if (category === 'semua' || cafe.getAttribute('data-category').includes(category)) {
-            cafe.style.display = 'block'; // Guna block untuk kad premium
+            cafe.style.display = 'block'; 
         } else {
             cafe.style.display = 'none';
         }
     });
 }
 
-
 // ================= FUNGSI 3: JANA KAFE & MENU DINAMIK =================
 function openCafe(cafeName, cafeLoc) {
     document.getElementById('dynamic-cafe-name').innerText = cafeName;
     document.getElementById('dynamic-cafe-loc').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${cafeLoc}`;
     
-    // Jana menu berbeza & HANTAR NAMA KAFE SEKALI
     let menuHTML = "";
     if(cafeName.includes("Mawar")) {
         menuHTML += createMenu("Nasi Ayam Penyet", 8.00, cafeName);
@@ -84,7 +75,6 @@ function openCafe(cafeName, cafeLoc) {
     navigateTo('cafe-detail-page');
 }
 
-// Tambah parameter cafeName supaya troli tahu makanan dari kedai mana
 function createMenu(name, price, cafeName) {
     let priceStr = price.toFixed(2);
     return `
@@ -101,13 +91,11 @@ function createMenu(name, price, cafeName) {
 // ================= FUNGSI 4: SISTEM TROLI (CART BERASINGAN) =================
 let cart = []; 
 
-// Fungsi mencipta ID unik untuk setiap barang yang ditambah (supaya mudah padam)
 function generateId() {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function addToCart(itemName, itemPrice, cafeName) {
-    // Simpan maklumat makanan beserta nama kafe
     cart.push({ id: generateId(), name: itemName, price: itemPrice, cafe: cafeName });
     updateCartBadge();
     alert(`✅ ${itemName} ditambah ke troli!`);
@@ -115,41 +103,40 @@ function addToCart(itemName, itemPrice, cafeName) {
 
 function updateCartBadge() {
     let count = cart.length;
-    document.getElementById('home-cart-badge').innerText = count;
-    document.getElementById('cafe-cart-badge').innerText = count;
+    let homeBadge = document.getElementById('home-cart-badge');
+    let cafeBadge = document.getElementById('cafe-cart-badge');
+    if(homeBadge) homeBadge.innerText = count;
+    if(cafeBadge) cafeBadge.innerText = count;
 }
 
 function openCart() {
     let container = document.getElementById('cart-items-container');
     let emptyMsg = document.getElementById('empty-cart-msg');
     
+    if(!container) return;
     container.innerHTML = ""; 
     
     if (cart.length === 0) {
-        emptyMsg.style.display = "block";
+        if(emptyMsg) emptyMsg.style.display = "block";
     } else {
-        emptyMsg.style.display = "none";
+        if(emptyMsg) emptyMsg.style.display = "none";
         
-        // Asingkan data troli mengikut nama Kafe
         let groupedCart = {};
         cart.forEach(item => {
             if(!groupedCart[item.cafe]) groupedCart[item.cafe] = [];
             groupedCart[item.cafe].push(item);
         });
         
-        // Bina paparan (UI) berasingan untuk setiap kafe
         for (let cafe in groupedCart) {
             let items = groupedCart[cafe];
             let subtotal = 0;
             
-            // Mula kotak (Card) untuk kafe ini
             let cafeHTML = `
                 <div class="cart-cafe-group">
                     <h4 class="cart-cafe-title"><i class="fa-solid fa-store"></i> ${cafe}</h4>
                     <div class="cart-cafe-items">
             `;
             
-            // Masukkan senarai makanan untuk kafe ini
             items.forEach(item => {
                 subtotal += item.price;
                 cafeHTML += `
@@ -163,8 +150,7 @@ function openCart() {
                 `;
             });
             
-            // Kira Jumlah & Letak Butang Bayar Khas untuk kafe ini sahaja
-            let total = subtotal + 2.00; // Caj Penghantaran RM2
+            let total = subtotal + 2.00; 
             
             cafeHTML += `
                     </div>
@@ -189,7 +175,6 @@ function openCart() {
 }
 
 function removeFromCart(id) {
-    // Padam hanya item yang mempunyai ID yang ditekan
     cart = cart.filter(item => item.id !== id);
     updateCartBadge();
     openCart(); 
@@ -197,21 +182,17 @@ function removeFromCart(id) {
 
 function checkoutCafe(cafeName) {
     alert(`Pesanan berjaya dihantar ke ${cafeName}! Sila tunggu Rider anda.`);
-    
-    // Selepas bayar satu kafe, PADAM makanan dari kafe tersebut sahaja dalam troli
     cart = cart.filter(item => item.cafe !== cafeName);
-    
     updateCartBadge();
     navigateTo('orders-page'); 
 }
 
-// ================= FUNGSI 5: SISTEM SIMPANAN MEMORI (LOCAL STORAGE) =================
-
+// ================= FUNGSI 5: SISTEM SIMPANAN MEMORI =================
 function checkSavedSession() {
     const savedRole = localStorage.getItem("poliku_role");
     const isLoggedIn = localStorage.getItem("poliku_logged_in") === "true";
 
-    if (savedRole) {
+    if (savedRole && isLoggedIn) {
         if (savedRole === "user") navigateTo('home-page');
         else if (savedRole === "vendor") navigateTo('vendor-dashboard-page');
         else if (savedRole === "rider") navigateTo('rider-dashboard-page');
@@ -219,7 +200,31 @@ function checkSavedSession() {
         updateProfileView(isLoggedIn);
     } else {
         navigateTo('welcome-page');
+        updateProfileView(false); 
     }
+}
+
+function processRegister(event, role) {
+    event.preventDefault(); 
+    
+    const form = event.target;
+    const nameInput = form.querySelector('input[type="text"]');
+    const emailInput = form.querySelector('input[type="email"]');
+    const passInput = form.querySelector('input[type="password"]');
+    
+    const fullName = nameInput ? nameInput.value.trim() : "Pelajar";
+    const email = emailInput ? emailInput.value.trim() : "";
+    const pass = passInput ? passInput.value : "";
+    
+    const nickname = fullName.split(" ")[0];
+    
+    localStorage.setItem("db_fullname", fullName);
+    localStorage.setItem("db_nickname", nickname);
+    localStorage.setItem("db_email", email);
+    localStorage.setItem("db_pass", pass);
+    
+    alert("✅ Pendaftaran berjaya! Sila log masuk menggunakan e-mel dan kata laluan anda.");
+    navigateTo('login-page');
 }
 
 function processLogin(event, role) {
@@ -227,37 +232,56 @@ function processLogin(event, role) {
     
     const form = event.target;
     const emailInput = form.querySelector('input[type="email"]');
-    const passInput = form.querySelector('input[type="password"]'); // Tangkap password
+    const passInput = form.querySelector('input[type="password"]'); 
     
-    const email = emailInput ? emailInput.value : "user@email.com";
+    const email = emailInput ? emailInput.value.trim() : "";
     const pass = passInput ? passInput.value : "";
 
-    // WAJIBKAN PASSWORD "123456" UNTUK LOG MASUK
-    if (pass !== "123456") {
-        alert("Kata laluan salah! Sila guna '123456' untuk fasa percubaan.");
-        return; // Hentikan dari log masuk
+    const dbEmail = localStorage.getItem("db_email");
+    const dbPass = localStorage.getItem("db_pass");
+    const dbNickname = localStorage.getItem("db_nickname");
+    
+    if (role === 'user') {
+        if (!dbEmail) {
+            alert("⚠️ Anda belum mendaftar akaun. Sila daftar terlebih dahulu.");
+            return;
+        }
+        if (email !== dbEmail || pass !== dbPass) {
+            alert("❌ E-mel atau kata laluan salah! Sila cuba lagi.");
+            return; 
+        }
+    } else {
+        // Untuk Vendor/Rider (Fasa percubaan)
+        if (pass !== "123456") {
+            alert("Gunakan password '123456' untuk percubaan Vendor/Rider.");
+            return;
+        }
     }
-
-    const name = email.split('@')[0]; 
     
     localStorage.setItem("poliku_role", role);
     localStorage.setItem("poliku_logged_in", "true");
-    localStorage.setItem("poliku_name", name);
+    localStorage.setItem("poliku_name", role === 'user' ? dbNickname : role); 
     localStorage.setItem("poliku_email", email);
 
     checkSavedSession(); 
 }
 
+// FIX: Tetamu (Guest) kini akan melompat terus ke Halaman Utama tanpa disekat oleh checkSavedSession
 function processGuest(role) {
     localStorage.setItem("poliku_role", role);
     localStorage.setItem("poliku_logged_in", "false"); 
-    checkSavedSession();
+    
+    if (role === "user") navigateTo('home-page');
+    else if (role === "vendor") navigateTo('vendor-dashboard-page');
+    else if (role === "rider") navigateTo('rider-dashboard-page');
+    
+    updateProfileView(false);
 }
 
 function updateProfileView(isLoggedIn) {
     const loggedInSection = document.getElementById("logged-in-profile");
     const guestSection = document.getElementById("guest-profile");
-    const homeGreeting = document.getElementById("home-greeting"); // Tangkap tajuk di Home
+    const homeGreeting = document.getElementById("home-greeting"); 
     
     if (isLoggedIn) {
         if(loggedInSection) loggedInSection.style.display = "block";
@@ -265,8 +289,7 @@ function updateProfileView(isLoggedIn) {
         
         const name = localStorage.getItem("poliku_name");
         const email = localStorage.getItem("poliku_email");
-        // Huruf besarkan awalan nama
-        const capitalizedName = name ? name.charAt(0).toUpperCase() + name.slice(1) : "Siswa";
+        const capitalizedName = name ? name.charAt(0).toUpperCase() + name.slice(1) : "Pengguna";
         
         const nameDisplay = document.getElementById("profile-name-display");
         const emailDisplay = document.getElementById("profile-email-display");
@@ -274,14 +297,12 @@ function updateProfileView(isLoggedIn) {
         if(nameDisplay) nameDisplay.innerText = capitalizedName;
         if(emailDisplay) emailDisplay.innerText = email;
         
-        // PAPAR NAMA JIKA LOG MASUK
         if(homeGreeting) homeGreeting.innerHTML = `Nak makan apa <br>hari ini, ${capitalizedName}?`;
         
     } else {
         if(loggedInSection) loggedInSection.style.display = "none";
         if(guestSection) guestSection.style.display = "block";
         
-        // HILANGKAN NAMA JIKA TETAMU (GUEST)
         if(homeGreeting) homeGreeting.innerHTML = `Nak makan apa <br>hari ini?`;
     }
 }
@@ -294,7 +315,7 @@ function processLogout() {
     navigateTo('welcome-page');
 }
 
-// ================= FUNGSI 6: SKRIN TERAPUNG VENDOR / RIDER =================
+// ================= FUNGSI 6: SKRIN TERAPUNG =================
 function showDevAlert() {
     const alertBox = document.getElementById('dev-alert');
     if(alertBox) alertBox.style.display = 'flex';
