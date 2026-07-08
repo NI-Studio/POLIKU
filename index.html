@@ -77,6 +77,11 @@
                     <a href="#" onclick="navigateTo('forgot-page')">Lupa Kata Laluan?</a>
                 </div>
                 <button type="submit" class="btn-primary">Log Masuk</button>
+                
+                <!-- Teks biasa untuk teroka (Pelanggan) -->
+                <div style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="event.preventDefault(); navigateTo('home-page');" style="color: #747d8c; font-size: 13px; font-weight: 500; text-decoration: underline;">Teroka tanpa log masuk</a>
+                </div>
             </form>
             
             <div class="auth-footer">
@@ -245,11 +250,14 @@
                     <div class="category-card"><i class="fa-solid fa-bowl-rice"></i><span>Nasi</span></div>
                     <div class="category-card"><i class="fa-solid fa-burger"></i><span>Fast Food</span></div>
                     <div class="category-card"><i class="fa-solid fa-mug-hot"></i><span>Minuman</span></div>
+                    <!-- Kategori yang hilang dikembalikan -->
+                    <div class="category-card"><i class="fa-solid fa-ice-cream"></i><span>Manisan</span></div>
+                    <div class="category-card"><i class="fa-solid fa-pizza-slice"></i><span>Barat</span></div>
                 </div>
             </div>
 
             <div class="content-section">
-                <h4>Vendor Berdekatan</h4>
+                <h4>Pilihan Kedai Rawak</h4>
                 <div class="vendor-list">
                     <div class="vendor-card">
                         <div class="vendor-img" style="background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);"></div>
@@ -258,13 +266,114 @@
                             <p><i class="fa-solid fa-star"></i> 4.8 | 15 min | Percuma Penghantaran</p>
                         </div>
                     </div>
+                    <!-- Kedai kedua dikembalikan -->
+                    <div class="vendor-card">
+                        <div class="vendor-img" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"></div>
+                        <div class="vendor-details">
+                            <h5>Burger Bakar Meleleh</h5>
+                            <p><i class="fa-solid fa-star"></i> 4.5 | 20 min | RM3 Penghantaran</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="bottom-nav">
-                <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
-                <div class="nav-item"><i class="fa-solid fa-receipt"></i></div>
-                <div class="nav-item" onclick="navigateTo('login-page')"><i class="fa-solid fa-right-from-bracket"></i></div>
+                <div class="nav-item active" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
+                <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
+                <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN PESANAN (RECEIPT) ================= -->
+        <div id="orders-page" class="page main-app-page">
+            <div class="home-header">
+                <div class="user-info">
+                    <h3>Pesanan Saya 🧾</h3>
+                    <p>Jejak makanan anda di sini</p>
+                </div>
+            </div>
+            <div class="content-section" style="margin-top: 20px;">
+                <div class="vendor-card" style="padding: 15px; border-left: 5px solid #2ed573;">
+                    <h5>Status: Sedang Disediakan 🍳</h5>
+                    <p style="margin: 5px 0;"><strong>Restoran Nasi Kandar Padu</strong></p>
+                    <p>2x Nasi Kandar Ayam Bawang</p>
+                    <p style="margin-top: 10px; color: #ff4757; font-weight: bold;">RM 24.00</p>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item active" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
+                <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
+                <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN KEGEMARAN (LIKE/HEART) ================= -->
+        <div id="favorites-page" class="page main-app-page">
+            <div class="home-header">
+                <div class="user-info">
+                    <h3>Kegemaran ❤️</h3>
+                    <p>Senarai kedai pilihan hati anda</p>
+                </div>
+            </div>
+            <div class="content-section" style="margin-top: 20px;">
+                <div class="vendor-list">
+                    <div class="vendor-card">
+                        <div class="vendor-img" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"></div>
+                        <div class="vendor-details">
+                            <h5 style="display:flex; justify-content:space-between;">Burger Bakar Meleleh <i class="fa-solid fa-heart" style="color:#ff4757;"></i></h5>
+                            <p><i class="fa-solid fa-star"></i> 4.5 | Kegemaran Anda</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
+                <div class="nav-item active" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
+                <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN PROFIL (MY PROFILE) ================= -->
+        <div id="profile-page" class="page main-app-page">
+            <div class="home-header">
+                <div class="user-info">
+                    <h3>Profil Saya 👤</h3>
+                    <p>Urus maklumat akaun anda</p>
+                </div>
+            </div>
+            <div class="content-section" style="margin-top: 20px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="width: 80px; height: 80px; background: #ffe3e5; color: #ff4757; font-size: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3 style="color: #2f3542;">Naqib</h3>
+                </div>
+                
+                <div style="background: #f1f2f6; padding: 15px; border-radius: 12px; margin-bottom: 10px;">
+                    <p style="font-size: 12px; color: #747d8c;">E-mel</p>
+                    <p style="font-size: 14px; font-weight: 600; color: #2f3542;">naqib@email.com</p>
+                </div>
+                <div style="background: #f1f2f6; padding: 15px; border-radius: 12px; margin-bottom: 25px;">
+                    <p style="font-size: 12px; color: #747d8c;">No. Telefon</p>
+                    <p style="font-size: 14px; font-weight: 600; color: #2f3542;">+60 12-345 6789</p>
+                </div>
+
+                <!-- Butang Log Keluar dipindahkan ke dalam Profil -->
+                <button class="btn-primary" onclick="navigateTo('welcome-page')" style="width: 100%;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Log Keluar
+                </button>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
+                <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
+                <div class="nav-item active" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
             </div>
         </div>
 
