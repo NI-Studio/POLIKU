@@ -242,223 +242,296 @@
             </div>
         </div>
 
-        <!-- ================= HALAMAN UTAMA (PELANGGAN) ================= -->
+
+        <!-- ================= HALAMAN UTAMA (PELAJAR - PREMIUM DESIGN) ================= -->
         <div id="home-page" class="page main-app-page">
-            <div class="home-header">
-                <div class="user-info">
-                    <h3>Hai, Naqib! 👋</h3>
-                    <p>Nak makan apa hari ini?</p>
+            <div class="home-header-premium">
+                <div class="header-top-row">
+                    <div class="user-profile-badge">
+                        <img src="https://ui-avatars.com/api/?name=Naqib&background=fff&color=ff4757&bold=true" alt="User">
+                        <div class="user-greeting">
+                            <p>Hantar ke</p>
+                            <h4>Kolej Kediaman Mawar <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></h4>
+                        </div>
+                    </div>
+                    <div class="cart-icon-container" onclick="openCart()">
+                        <div class="icon-circle"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <span class="cart-badge" id="home-cart-badge">0</span>
+                    </div>
                 </div>
-                <i class="fa-solid fa-bell notification-icon"></i>
+                <h2>Nak makan apa <br>hari ini, Naqib?</h2>
             </div>
             
-            <div class="search-bar">
+            <div class="search-bar-premium">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Cari makanan atau restoran...">
+                <input type="text" placeholder="Cari kafe, nasi, ayam...">
+                <div class="filter-btn"><i class="fa-solid fa-sliders"></i></div>
             </div>
 
-            <div class="content-section">
-                <h4>Kategori Pilihan</h4>
-                <div class="category-scroll">
-                    <div class="category-card"><i class="fa-solid fa-bowl-rice"></i><span>Nasi</span></div>
-                    <div class="category-card"><i class="fa-solid fa-burger"></i><span>Fast Food</span></div>
-                    <div class="category-card"><i class="fa-solid fa-mug-hot"></i><span>Minuman</span></div>
-                    <div class="category-card"><i class="fa-solid fa-ice-cream"></i><span>Manisan</span></div>
-                    <div class="category-card"><i class="fa-solid fa-pizza-slice"></i><span>Barat</span></div>
+            <div class="content-section" style="margin-top: 10px;">
+                <h4 class="section-title">Kategori</h4>
+                <div class="category-scroll-premium">
+                    <div class="cat-pill active" id="cat-semua" onclick="filterCategory('semua')"><i class="fa-solid fa-border-all"></i> Semua</div>
+                    <div class="cat-pill" id="cat-nasi" onclick="filterCategory('nasi')"><i class="fa-solid fa-bowl-rice"></i> Nasi</div>
+                    <div class="cat-pill" id="cat-western" onclick="filterCategory('western')"><i class="fa-solid fa-burger"></i> Barat</div>
+                    <div class="cat-pill" id="cat-minuman" onclick="filterCategory('minuman')"><i class="fa-solid fa-mug-hot"></i> Minuman</div>
                 </div>
             </div>
 
             <div class="content-section">
-                <h4>Pilihan Kedai Rawak</h4>
-                <div class="vendor-list">
-                    <div class="vendor-card">
-                        <div class="vendor-img" style="background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);"></div>
-                        <div class="vendor-details">
-                            <h5>Restoran Nasi Kandar Padu</h5>
-                            <p><i class="fa-solid fa-star"></i> 4.8 | 15 min | Percuma Penghantaran</p>
+                <h4 class="section-title">Kafe Pilihan Kampus <i class="fa-solid fa-fire" style="color: #ff9f43;"></i></h4>
+                <div class="vendor-list-premium" id="cafe-list">
+                    
+                    <div class="vendor-card-premium cafe-item" data-category="nasi minuman" onclick="openCafe('Kafe Kolej Mawar', 'Kolej Kediaman Mawar')">
+                        <div class="vendor-cover" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                            <div class="delivery-time">15 Min</div>
+                        </div>
+                        <div class="vendor-info-premium">
+                            <div class="vendor-title-row">
+                                <h5>Kafe Kolej Mawar</h5>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                            </div>
+                            <p class="vendor-tags">Nasi Campur • Ayam Penyet • Halal</p>
+                            <p class="vendor-fee"><i class="fa-solid fa-motorcycle"></i> RM 2.00 Penghantaran</p>
                         </div>
                     </div>
-                    <div class="vendor-card">
-                        <div class="vendor-img" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"></div>
-                        <div class="vendor-details">
-                            <h5>Burger Bakar Meleleh</h5>
-                            <p><i class="fa-solid fa-star"></i> 4.5 | 20 min | RM3 Penghantaran</p>
+
+                    <div class="vendor-card-premium cafe-item" data-category="western" onclick="openCafe('FSKM Cafe (Bistari)', 'Fakulti Komputer & Matematik')">
+                        <div class="vendor-cover" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                            <div class="delivery-time">25 Min</div>
+                        </div>
+                        <div class="vendor-info-premium">
+                            <div class="vendor-title-row">
+                                <h5>FSKM Cafe (Bistari)</h5>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                            </div>
+                            <p class="vendor-tags">Burger • Spaghetti • Western</p>
+                            <p class="vendor-fee"><i class="fa-solid fa-motorcycle"></i> RM 3.00 Penghantaran</p>
                         </div>
                     </div>
+
                 </div>
             </div>
             
-            <div class="bottom-nav">
-                <div class="nav-item active" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
-                <div class="nav-item" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
-                <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
-                <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            <div class="bottom-nav-premium">
+                <div class="nav-item-premium active" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i><span>Home</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i><span>Pesanan</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i><span>Suka</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i><span>Profil</span></div>
             </div>
         </div>
 
-        <!-- ================= HALAMAN PESANAN (RECEIPT) - RINGKASAN ================= -->
+        <!-- ================= HALAMAN MENU KAFE (DALAMAN KAFE) ================= -->
+        <div id="cafe-detail-page" class="page main-app-page">
+            <div class="cafe-hero-image">
+                <div class="hero-overlay">
+                    <div class="hero-actions">
+                        <div class="icon-circle shadow" onclick="navigateTo('home-page')"><i class="fa-solid fa-arrow-left"></i></div>
+                        <div class="cart-icon-container" onclick="openCart()">
+                            <div class="icon-circle shadow"><i class="fa-solid fa-cart-shopping"></i></div>
+                            <span class="cart-badge" id="cafe-cart-badge">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cafe-menu-container">
+                <div class="cafe-header-details">
+                    <h2 id="dynamic-cafe-name">Nama Kafe</h2>
+                    <p class="cafe-location" id="dynamic-cafe-loc"><i class="fa-solid fa-location-dot"></i> Lokasi Kafe</p>
+                    <div class="cafe-stats">
+                        <span><i class="fa-solid fa-star" style="color:#ffa502;"></i> 4.8 Rating</span>
+                        <span><i class="fa-solid fa-clock" style="color:#2ed573;"></i> Buka</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h4 class="section-title" style="margin-top: 15px;">Menu Pilihan</h4>
+                    <div class="menu-list-premium" id="dynamic-menu-list">
+                        <!-- Dijana dengan JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN TROLI (CART) ================= -->
+        <div id="cart-page" class="page main-app-page">
+            <div class="inner-page-header">
+                <i class="fa-solid fa-arrow-left" onclick="navigateTo('cafe-detail-page')"></i>
+                <h3>Troli Saya</h3>
+                <div style="width: 20px;"></div>
+            </div>
+            
+            <div class="content-section" style="flex-grow: 1;">
+                <div id="cart-items-container"></div>
+                
+                <div class="receipt-summary-premium" id="cart-summary" style="display: none;">
+                    <h5>Ringkasan Bayaran</h5>
+                    <div class="summary-row"><p>Subtotal</p><p id="cart-subtotal" class="dark-text">RM 0.00</p></div>
+                    <div class="summary-row"><p>Caj Penghantaran</p><p class="dark-text">RM 2.00</p></div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total"><p>Jumlah</p><p id="cart-total" class="brand-text">RM 0.00</p></div>
+                    
+                    <button class="btn-primary checkout-btn" onclick="checkout()">
+                        Sahkan Pesanan <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div id="empty-cart-msg" class="empty-state">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2762/2762885.png" alt="Kosong">
+                    <h4>Alamak, troli kosong!</h4>
+                    <p>Mari tambah makanan yang sedap-sedap.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN PESANAN (ORDERS) ================= -->
         <div id="orders-page" class="page main-app-page">
-            <div class="home-header">
-                <div class="user-info">
-                    <h3>Pesanan Saya 🧾</h3>
-                    <p>Jejak pesanan terkini anda</p>
+            <div class="inner-page-header">
+                <h3>Pesanan Saya</h3>
+            </div>
+            
+            <div class="content-section">
+                <div class="order-summary-premium" onclick="navigateTo('order-detail-page')">
+                    <div class="order-header-row">
+                        <div class="order-shop-info">
+                            <div class="shop-logo"><i class="fa-solid fa-store"></i></div>
+                            <div>
+                                <h5>Kafe Kolej Mawar</h5>
+                                <span class="order-date">Hari ini • 12:30 PM</span>
+                            </div>
+                        </div>
+                        <span class="status-pill active">Disediakan</span>
+                    </div>
+                    <div class="order-divider"></div>
+                    <div class="order-bottom-row">
+                        <p class="order-price">RM 24.00 <span>(2 Item)</span></p>
+                        <button class="btn-track">Jejak Pesanan</button>
+                    </div>
                 </div>
             </div>
             
-            <div class="content-section" style="margin-top: 20px;">
-                
-                <!-- Kad Ringkasan Pesanan (Boleh Ditekan) -->
-                <div class="order-summary-card" onclick="navigateTo('order-detail-page')">
-                    <div class="order-summary-header">
-                        <span class="order-id">#ORD-1024</span>
-                        <span class="order-status-badge">Sedang Disediakan</span>
-                    </div>
-                    <div class="order-summary-body">
-                        <h5>Restoran Nasi Kandar Padu</h5>
-                        <p class="order-date">Hari ini, 12:30 PM</p>
-                        <p class="order-total">RM 24.00 <span class="order-items-count">(2 item)</span></p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right order-arrow"></i>
-                </div>
-                
-            </div>
-            
-            <div class="bottom-nav">
-                <div class="nav-item" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
-                <div class="nav-item active" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
-                <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
-                <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            <div class="bottom-nav-premium">
+                <div class="nav-item-premium" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i><span>Home</span></div>
+                <div class="nav-item-premium active" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i><span>Pesanan</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i><span>Suka</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i><span>Profil</span></div>
             </div>
         </div>
 
-        <!-- ================= HALAMAN BUTIRAN PESANAN (DALAMAN ORDER) ================= -->
+        <!-- ================= HALAMAN BUTIRAN PESANAN (TRACKING) ================= -->
         <div id="order-detail-page" class="page main-app-page">
-            <div class="home-header" style="display: flex; align-items: center; gap: 15px;">
-                <i class="fa-solid fa-arrow-left" style="font-size: 20px; cursor: pointer;" onclick="navigateTo('orders-page')"></i>
-                <div class="user-info">
-                    <h3>Butiran Pesanan</h3>
-                    <p>#ORD-1024</p>
-                </div>
+            <div class="inner-page-header">
+                <i class="fa-solid fa-arrow-left" onclick="navigateTo('orders-page')"></i>
+                <h3>Status Pesanan #1024</h3>
+                <div style="width: 20px;"></div>
             </div>
 
-            <div class="content-section" style="margin-top: 20px; padding-bottom: 40px;">
-                
-                <!-- Bahagian 1: Status & Rider -->
-                <div class="tracking-card">
-                    <h4 style="margin-bottom: 15px;">Status Semasa</h4>
-                    
+            <div class="content-section" style="padding-bottom: 40px;">
+                <div class="premium-card">
+                    <h4 style="margin-bottom: 20px; font-size: 15px;">Jejak Langsung</h4>
                     <div class="status-timeline">
-                        <div class="status-step active"><i class="fa-solid fa-circle-check"></i> Pesanan Diterima Kedai</div>
-                        <div class="status-step active"><i class="fa-solid fa-fire-burner"></i> Sedang Disediakan</div>
-                        <div class="status-step"><i class="fa-solid fa-motorcycle"></i> Rider Mengambil Pesanan</div>
-                        <div class="status-step"><i class="fa-solid fa-house"></i> Pesanan Tiba</div>
+                        <div class="status-step done">
+                            <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                            <div class="step-text">Pesanan Diterima</div>
+                        </div>
+                        <div class="status-step active">
+                            <div class="step-icon"><i class="fa-solid fa-fire-burner"></i></div>
+                            <div class="step-text">Makanan Sedang Dimasak</div>
+                        </div>
+                        <div class="status-step pending">
+                            <div class="step-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                            <div class="step-text">Rider Mengambil Pesanan</div>
+                        </div>
                     </div>
                     
-                    <!-- Info Rider -->
-                    <div class="rider-info-box">
-                        <div class="rider-icon"><i class="fa-solid fa-motorcycle"></i></div>
-                        <div class="rider-text">
-                            <h5>Lokasi Rider: Ahmad</h5>
-                            <p>Dalam perjalanan ke restoran</p>
+                    <div class="rider-profile-box">
+                        <img src="https://ui-avatars.com/api/?name=Ahmad&background=0984e3&color=fff" alt="Rider">
+                        <div class="rider-info">
+                            <h5>Ahmad (Rider)</h5>
+                            <p>BBN 1234 • Yamaha Y15</p>
                         </div>
-                        <div class="rider-call">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
+                        <div class="rider-call-btn"><i class="fa-solid fa-phone"></i></div>
                     </div>
                 </div>
 
-                <!-- Bahagian 2: Resit Penuh -->
-                <div class="receipt-card" style="margin-top: 20px;">
-                    <h4 style="border-bottom: 1px dashed #dfe4ea; padding-bottom: 10px; margin-bottom: 15px;">Restoran Nasi Kandar Padu</h4>
-                    
-                    <div class="receipt-items">
-                        <div class="item-row">
-                            <span class="qty">2x</span>
-                            <span class="item-name">Nasi Kandar Ayam Bawang</span>
-                            <span class="item-price">RM 20.00</span>
-                        </div>
-                        <div class="item-row">
-                            <span class="qty">1x</span>
-                            <span class="item-name">Teh O Ais Limau</span>
-                            <span class="item-price">RM 2.00</span>
-                        </div>
+                <div class="premium-card" style="margin-top: 15px;">
+                    <h4 style="border-bottom: 1px dashed #dfe4ea; padding-bottom: 12px; font-size: 14px;">Resit Kafe Kolej Mawar</h4>
+                    <div class="receipt-list">
+                        <div class="receipt-item"><span>2x Nasi Ayam Penyet</span><span>RM 16.00</span></div>
+                        <div class="receipt-item"><span>1x Teh O Ais</span><span>RM 1.50</span></div>
                     </div>
-                    
-                    <div class="receipt-summary" style="border-top: 1px dashed #dfe4ea; padding-top: 15px; margin-top: 15px;">
-                        <div class="summary-row"><p>Subtotal</p><p>RM 22.00</p></div>
-                        <div class="summary-row"><p>Caj Penghantaran</p><p>RM 2.00</p></div>
-                        <div class="summary-row total"><p>Jumlah Bayaran</p><p>RM 24.00</p></div>
+                    <div class="receipt-total-row">
+                        <span>Jumlah Dibayar</span>
+                        <span class="brand-text">RM 17.50</span>
                     </div>
                 </div>
-                
             </div>
-            <!-- Tiada bottom nav di sini supaya rasa macam 'modal/pop-up' page sebenar -->
         </div>
 
-        <!-- ================= HALAMAN KEGEMARAN (LIKE/HEART) ================= -->
+        <!-- ================= HALAMAN KEGEMARAN ================= -->
         <div id="favorites-page" class="page main-app-page">
-            <div class="home-header">
-                <div class="user-info">
-                    <h3>Kegemaran ❤️</h3>
-                    <p>Senarai kedai pilihan hati anda</p>
-                </div>
+            <div class="inner-page-header">
+                <h3>Kafe Kegemaran ❤️</h3>
             </div>
-            <div class="content-section" style="margin-top: 20px;">
-                <div class="vendor-list">
-                    <div class="vendor-card">
-                        <div class="vendor-img" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"></div>
-                        <div class="vendor-details">
-                            <h5 style="display:flex; justify-content:space-between;">Burger Bakar Meleleh <i class="fa-solid fa-heart" style="color:#ff4757;"></i></h5>
-                            <p><i class="fa-solid fa-star"></i> 4.5 | Kegemaran Anda</p>
+            <div class="content-section">
+                <div class="vendor-card-premium cafe-item" onclick="openCafe('FSKM Cafe (Bistari)', 'Fakulti Komputer & Matematik')">
+                    <div class="vendor-cover" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-4.0.3');">
+                        <div class="favorite-heart active"><i class="fa-solid fa-heart"></i></div>
+                    </div>
+                    <div class="vendor-info-premium">
+                        <div class="vendor-title-row">
+                            <h5>FSKM Cafe (Bistari)</h5>
+                            <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
                         </div>
+                        <p class="vendor-tags">Burger • Spaghetti</p>
                     </div>
                 </div>
             </div>
             
-            <div class="bottom-nav">
-                <div class="nav-item" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
-                <div class="nav-item" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
-                <div class="nav-item active" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
-                <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            <div class="bottom-nav-premium">
+                <div class="nav-item-premium" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i><span>Home</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i><span>Pesanan</span></div>
+                <div class="nav-item-premium active" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i><span>Suka</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i><span>Profil</span></div>
             </div>
         </div>
 
-        <!-- ================= HALAMAN PROFIL (MY PROFILE) ================= -->
+        <!-- ================= HALAMAN PROFIL ================= -->
         <div id="profile-page" class="page main-app-page">
-            <div class="home-header">
-                <div class="user-info">
-                    <h3>Profil Saya 👤</h3>
-                    <p>Urus maklumat akaun anda</p>
-                </div>
+            <div class="inner-page-header">
+                <h3>Profil Saya</h3>
             </div>
-            <div class="content-section" style="margin-top: 20px;">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="width: 80px; height: 80px; background: #ffe3e5; color: #ff4757; font-size: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <h3 style="color: #2f3542;">Naqib</h3>
+            <div class="content-section">
+                <div class="profile-header-premium">
+                    <img src="https://ui-avatars.com/api/?name=Naqib&background=ffe3e5&color=ff4757&size=100" alt="Naqib">
+                    <h3>Muhammad Naqib</h3>
+                    <p>naqib@siswa.edu.my</p>
                 </div>
                 
-                <div style="background: #f1f2f6; padding: 15px; border-radius: 12px; margin-bottom: 10px;">
-                    <p style="font-size: 12px; color: #747d8c;">E-mel</p>
-                    <p style="font-size: 14px; font-weight: 600; color: #2f3542;">naqib@email.com</p>
-                </div>
-                <div style="background: #f1f2f6; padding: 15px; border-radius: 12px; margin-bottom: 25px;">
-                    <p style="font-size: 12px; color: #747d8c;">No. Telefon</p>
-                    <p style="font-size: 14px; font-weight: 600; color: #2f3542;">+60 12-345 6789</p>
+                <div class="premium-card">
+                    <div class="profile-menu-item">
+                        <div class="p-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="p-text">Alamat Kampus</div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                    <div class="profile-menu-item">
+                        <div class="p-icon"><i class="fa-solid fa-credit-card"></i></div>
+                        <div class="p-text">Kaedah Bayaran</div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
                 </div>
 
-                <!-- Butang Log Keluar dipindahkan ke dalam Profil -->
-                <button class="btn-primary" onclick="navigateTo('welcome-page')" style="width: 100%;">
+                <button class="btn-logout-premium" onclick="navigateTo('welcome-page')">
                     <i class="fa-solid fa-right-from-bracket"></i> Log Keluar
                 </button>
             </div>
             
-            <div class="bottom-nav">
-                <div class="nav-item" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i></div>
-                <div class="nav-item" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i></div>
-                <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
-                <div class="nav-item active" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
+            <div class="bottom-nav-premium">
+                <div class="nav-item-premium" onclick="navigateTo('home-page')"><i class="fa-solid fa-house"></i><span>Home</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('orders-page')"><i class="fa-solid fa-receipt"></i><span>Pesanan</span></div>
+                <div class="nav-item-premium" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i><span>Suka</span></div>
+                <div class="nav-item-premium active" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i><span>Profil</span></div>
             </div>
         </div>
 
@@ -483,6 +556,7 @@
                 </div>
             </div>
 
+            <!-- Menggunakan kelas asal .bottom-nav dan .nav-item supaya tak berubah -->
             <div class="bottom-nav">
                 <div class="nav-item active vendor-text"><i class="fa-solid fa-chart-line"></i></div>
                 <div class="nav-item"><i class="fa-solid fa-utensils"></i></div>
@@ -512,6 +586,7 @@
                 </div>
             </div>
 
+            <!-- Menggunakan kelas asal .bottom-nav dan .nav-item supaya tak berubah -->
             <div class="bottom-nav">
                 <div class="nav-item active rider-text"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="nav-item"><i class="fa-solid fa-wallet"></i></div>
