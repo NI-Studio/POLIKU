@@ -43,15 +43,15 @@
                 
                 <div class="welcome-buttons">
                     <button class="btn-premium-outline user-outline" onclick="navigateTo('login-page')">
-                        <i class="fa-solid fa-user"></i> Teroka Makanan (Pelanggan)
+                        <i class="fa-solid fa-user"></i> Teroka Makanan
                     </button>
                     
-                    <button class="btn-premium-outline" onclick="navigateTo('vendor-login-page')">
-                        <i class="fa-solid fa-store"></i> Urus Kedai (Vendor)
+                    <button class="btn-premium-outline" onclick="showDevAlert()">
+                        <i class="fa-solid fa-store"></i> Urus Kafe
                     </button>
                     
-                    <button class="btn-premium-outline rider-outline" onclick="navigateTo('rider-login-page')">
-                        <i class="fa-solid fa-helmet-safety"></i> Rakan Penghantar (Rider)
+                    <button class="btn-premium-outline rider-outline" onclick="showDevAlert()">
+                        <i class="fa-solid fa-helmet-safety"></i> Rakan Penghantar
                     </button>
                 </div>
             </div>
@@ -64,10 +64,10 @@
                 <h1>Poliku User</h1>
                 <p>Penghantaran Pantas, Perut Puas</p>
             </div>
-            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('home-page');">
+            <form class="auth-form" onsubmit="processLogin(event, 'user');">
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="E-mel" required>
+                    <input type="email" placeholder="E-mel Siswa" required>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
@@ -78,9 +78,8 @@
                 </div>
                 <button type="submit" class="btn-primary">Log Masuk</button>
                 
-                <!-- Teks biasa untuk teroka (Pelanggan) -->
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="#" onclick="event.preventDefault(); navigateTo('home-page');" style="color: #747d8c; font-size: 13px; font-weight: 500; text-decoration: underline;">Teroka tanpa log masuk</a>
+                    <a href="#" onclick="event.preventDefault(); processGuest('user');" style="color: #747d8c; font-size: 13px; font-weight: 500; text-decoration: underline;">Teroka tanpa log masuk</a>
                 </div>
             </form>
             
@@ -93,7 +92,7 @@
             </div>
         </div>
 
-        <!-- ================= HALAMAN DAFTAR (PELANGGAN) ================= -->
+     <!-- ================= HALAMAN DAFTAR (PELANGGAN) ================= -->
         <div id="register-page" class="page auth-page">
             <div class="auth-header">
                 <h2>Daftar Akaun Baru</h2>
@@ -147,23 +146,19 @@
                 <h1>Poliku Vendor</h1>
                 <p>Urus kedai dan pesanan anda</p>
             </div>
-            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('vendor-dashboard-page');">
+          <form class="auth-form" onsubmit="processLogin(event, 'rider');">
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="E-mel Rasmi Kedai" required>
+                    <input type="email" placeholder="E-mel Rider" required>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" placeholder="Kata Laluan" required>
                 </div>
-                <div class="forgot-link">
-                    <a href="#" class="vendor-text" onclick="navigateTo('forgot-page')">Lupa Kata Laluan?</a>
-                </div>
-                <button type="submit" class="btn-primary btn-vendor" style="margin-top:10px;">Log Masuk Vendor</button>
+                <button type="submit" class="btn-primary btn-rider" style="margin-top:20px;">Log Masuk Rider</button>
                 
-                <!-- Teks biasa untuk teroka (Vendor) -->
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="#" onclick="event.preventDefault(); navigateTo('vendor-dashboard-page');" style="color: #ff9f43; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
+                    <a href="#" onclick="event.preventDefault(); processGuest('rider');" style="color: #0984e3; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
                 </div>
             </form>
             <div class="auth-footer">
@@ -259,7 +254,7 @@
                         <span class="cart-badge" id="home-cart-badge">0</span>
                     </div>
                 </div>
-                <h2>Nak makan apa <br>hari ini, Naqib?</h2>
+                <h2 id="home-greeting">Nak makan apa <br>hari ini?</h2>
             </div>
             
             <div class="search-bar-premium">
@@ -357,7 +352,7 @@
         <!-- ================= HALAMAN TROLI (CART) ================= -->
         <div id="cart-page" class="page main-app-page">
             <div class="inner-page-header">
-                <i class="fa-solid fa-arrow-left" onclick="navigateTo('cafe-detail-page')"></i>
+                <i class="fa-solid fa-arrow-left" onclick="navigateTo('home-page')"></i>
                 <h3>Troli Saya</h3>
                 <div style="width: 20px;"></div>
             </div>
@@ -365,18 +360,6 @@
             <div class="content-section" style="flex-grow: 1;">
                 <div id="cart-items-container"></div>
                 
-                <div class="receipt-summary-premium" id="cart-summary" style="display: none;">
-                    <h5>Ringkasan Bayaran</h5>
-                    <div class="summary-row"><p>Subtotal</p><p id="cart-subtotal" class="dark-text">RM 0.00</p></div>
-                    <div class="summary-row"><p>Caj Penghantaran</p><p class="dark-text">RM 2.00</p></div>
-                    <div class="summary-divider"></div>
-                    <div class="summary-row total"><p>Jumlah</p><p id="cart-total" class="brand-text">RM 0.00</p></div>
-                    
-                    <button class="btn-primary checkout-btn" onclick="checkout()">
-                        Sahkan Pesanan <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-
                 <div id="empty-cart-msg" class="empty-state">
                     <img src="https://cdn-icons-png.flaticon.com/512/2762/2762885.png" alt="Kosong">
                     <h4>Alamak, troli kosong!</h4>
@@ -455,12 +438,32 @@
                     </div>
                 </div>
 
+                <!-- Resit yang telah dikemaskan -->
                 <div class="premium-card" style="margin-top: 15px;">
-                    <h4 style="border-bottom: 1px dashed #dfe4ea; padding-bottom: 12px; font-size: 14px;">Resit Kafe Kolej Mawar</h4>
-                    <div class="receipt-list">
-                        <div class="receipt-item"><span>2x Nasi Ayam Penyet</span><span>RM 16.00</span></div>
-                        <div class="receipt-item"><span>1x Teh O Ais</span><span>RM 1.50</span></div>
+                    <h4 style="border-bottom: 1px dashed #dfe4ea; padding-bottom: 12px; margin-bottom: 15px; font-size: 14px;">Resit Kafe Kolej Mawar</h4>
+                    
+                    <div class="receipt-items">
+                        <div class="item-row">
+                            <span class="qty">2x</span>
+                            <span class="item-name">Nasi Ayam Penyet</span>
+                            <span class="item-price">RM 16.00</span>
+                        </div>
+                        <div class="item-row">
+                            <span class="qty">1x</span>
+                            <span class="item-name">Teh O Ais</span>
+                            <span class="item-price">RM 1.50</span>
+                        </div>
                     </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="summary-row">
+                        <p>Subtotal</p><p>RM 17.50</p>
+                    </div>
+                    <div class="summary-row">
+                        <p>Caj Penghantaran</p><p>RM 0.00</p>
+                    </div>
+                    
                     <div class="receipt-total-row">
                         <span>Jumlah Dibayar</span>
                         <span class="brand-text">RM 17.50</span>
@@ -502,29 +505,44 @@
             <div class="inner-page-header">
                 <h3>Profil Saya</h3>
             </div>
+            
             <div class="content-section">
-                <div class="profile-header-premium">
-                    <img src="https://ui-avatars.com/api/?name=Naqib&background=ffe3e5&color=ff4757&size=100" alt="Naqib">
-                    <h3>Muhammad Naqib</h3>
-                    <p>naqib@siswa.edu.my</p>
-                </div>
                 
-                <div class="premium-card">
-                    <div class="profile-menu-item">
-                        <div class="p-icon"><i class="fa-solid fa-location-dot"></i></div>
-                        <div class="p-text">Alamat Kampus</div>
-                        <i class="fa-solid fa-chevron-right"></i>
+                <div id="logged-in-profile">
+                    <div class="profile-header-premium">
+                        <img src="https://ui-avatars.com/api/?name=Siswa&background=ffe3e5&color=ff4757&size=100" alt="Avatar">
+                        <h3 id="profile-name-display">Nama Pengguna</h3>
+                        <p id="profile-email-display">email@siswa.edu.my</p>
                     </div>
-                    <div class="profile-menu-item">
-                        <div class="p-icon"><i class="fa-solid fa-credit-card"></i></div>
-                        <div class="p-text">Kaedah Bayaran</div>
-                        <i class="fa-solid fa-chevron-right"></i>
+                    
+                    <div class="premium-card">
+                        <div class="profile-menu-item">
+                            <div class="p-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="p-text">Alamat Kampus</div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                        <div class="profile-menu-item">
+                            <div class="p-icon"><i class="fa-solid fa-credit-card"></i></div>
+                            <div class="p-text">Kaedah Bayaran</div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
                     </div>
+    
+                    <button class="btn-logout-premium" onclick="processLogout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log Keluar
+                    </button>
                 </div>
 
-                <button class="btn-logout-premium" onclick="navigateTo('welcome-page')">
-                    <i class="fa-solid fa-right-from-bracket"></i> Log Keluar
-                </button>
+                <div id="guest-profile" style="display: none; text-align: center; margin-top: 40px;">
+                    <i class="fa-solid fa-user-shield" style="font-size: 80px; color: #dfe4ea; margin-bottom: 20px;"></i>
+                    <h4 style="color: #2f3542; font-size: 18px; margin-bottom: 10px;">Anda Belum Log Masuk</h4>
+                    <p style="color: #747d8c; font-size: 13px; margin-bottom: 25px;">Sila log masuk atau daftar akaun untuk urus maklumat profil anda.</p>
+                    
+                    <button class="btn-primary" style="width: 100%; border-radius: 16px; padding: 15px; font-size: 15px;" onclick="navigateTo('login-page')">
+                        Log Masuk / Daftar
+                    </button>
+                </div>
+
             </div>
             
             <div class="bottom-nav-premium">
@@ -591,6 +609,15 @@
                 <div class="nav-item active rider-text"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="nav-item"><i class="fa-solid fa-wallet"></i></div>
                 <div class="nav-item" onclick="navigateTo('rider-login-page')"><i class="fa-solid fa-right-from-bracket"></i></div>
+            </div>
+        </div>
+
+        <div id="dev-alert" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:white; padding:30px 20px; border-radius:24px; text-align:center; width:85%; max-width:320px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                <i class="fa-solid fa-person-digging" style="font-size:50px; color:#ff9f43; margin-bottom:15px;"></i>
+                <h3 style="color:#2f3542; margin-bottom:10px; font-weight:700;">Harap Maaf!</h3>
+                <p style="color:#747d8c; font-size:14px; margin-bottom:25px; line-height:1.5;">Fungsi ini masih dalam pembangunan oleh pihak pentadbir.</p>
+                <button class="btn-primary" style="width:100%; border-radius:12px; padding:12px; background:#ff9f43;" onclick="closeDevAlert()">Kembali</button>
             </div>
         </div>
 
