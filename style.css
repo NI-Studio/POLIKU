@@ -272,20 +272,22 @@ body {
 
 /* NAVBAR BAWAH */
 .bottom-nav {
-    position: fixed; /* Jadikan ia kekal pada kedudukan skrin */
+    margin-top: auto; /* Ajaib: Fungsi ini akan menolak menu ke lantai (paling bawah) jika kandungan di atasnya sikit! */
+    position: sticky;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%); /* Pastikan ia berada tepat di tengah (align dengan app-container) */
     width: 100%;
-    max-width: 414px; /* Lebar kekal sama dengan aplikasi */
     background: white;
     display: flex;
     justify-content: space-around;
-    padding: 15px 0;
-    box-shadow: 0 -10px 25px rgba(0,0,0,0.08); /* Efek bayang supaya nampak timbul */
-    z-index: 1000; /* Pastikan menu sentiasa di hadapan/atas kandungan */
-    border-top-left-radius: 20px; /* Bucu atas melengkung sikit untuk efek cantik */
+    padding: 15px 0 20px 0; /* Tambahan ruang sikit kat bawah untuk butang 'home' iPhone */
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.08);
+    border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    z-index: 1000;
+}
+
+.content-section:last-of-type {
+    padding-bottom: 20px;
 }
 
 .nav-item {
@@ -579,13 +581,12 @@ body {
     min-height: 100vh;
 }
 
-/* Ruang kandungan utama dipadatkan untuk Vendor dan Pelanggan */
 .page.main-app-page {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    padding-bottom: 80px; /* Jarak khas untuk floating menu di bawah */
-    overflow-y: auto; /* Skrol hanya akan berlaku jika ada pesanan/restoran yang terlalu banyak */
+    padding: 0 !important; /* Buang padding dinding supaya menu boleh jadi 'full width' */
+    height: 100dvh; /* Pastikan halaman sentiasa penuh 1 skrin */
+    overflow-y: auto;
 }
 
 /* Betulkan Welcome Page untuk One View */
