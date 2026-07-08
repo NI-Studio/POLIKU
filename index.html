@@ -100,7 +100,7 @@
             <form class="auth-form" onsubmit="processRegister(event, 'user');">
                 <div class="input-group">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="Nama Penuh" required>
+                    <input type="text" placeholder="Nama Panggilan" required>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
@@ -227,7 +227,7 @@
                 <h2 class="rider-text">Daftar Rakan Rider</h2>
             </div>
             <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('rider-login-page');">
-                <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" placeholder="Nama Penuh" required></div>
+                <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" placeholder="Nama Panggilan" required></div>
                 <div class="input-group"><i class="fa-solid fa-id-card"></i><input type="text" placeholder="No. Kad Pengenalan" required></div>
                 <div class="input-group"><i class="fa-solid fa-motorcycle"></i><input type="text" placeholder="No. Plat Motosikal" required></div>
                 <div class="input-group"><i class="fa-solid fa-phone"></i><input type="tel" placeholder="No. Telefon" required></div>
@@ -261,18 +261,8 @@
             
             <div class="search-bar-premium">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Cari kafe, nasi, ayam...">
+                <input type="text" id="search-input" onkeyup="searchCafe()" placeholder="Cari kafe, nasi, ayam...">
                 <div class="filter-btn"><i class="fa-solid fa-sliders"></i></div>
-            </div>
-
-            <div class="content-section" style="margin-top: 10px;">
-                <h4 class="section-title">Kategori</h4>
-                <div class="category-scroll-premium">
-                    <div class="cat-pill active" id="cat-semua" onclick="filterCategory('semua')"><i class="fa-solid fa-border-all"></i> Semua</div>
-                    <div class="cat-pill" id="cat-nasi" onclick="filterCategory('nasi')"><i class="fa-solid fa-bowl-rice"></i> Nasi</div>
-                    <div class="cat-pill" id="cat-western" onclick="filterCategory('western')"><i class="fa-solid fa-burger"></i> Barat</div>
-                    <div class="cat-pill" id="cat-minuman" onclick="filterCategory('minuman')"><i class="fa-solid fa-mug-hot"></i> Minuman</div>
-                </div>
             </div>
 
             <div class="content-section">
