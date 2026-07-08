@@ -650,3 +650,15 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(9, 132, 227, 0.15);
 }
+
+/* ================= TEMA BUTANG OUTLINE PELANGGAN ================= */
+.btn-premium-outline.user-outline {
+    border-color: #ff4757;
+    color: #ff4757;
+    background: transparent; /* Pastikan dalaman kosong */
+    box-shadow: none; /* Buang efek glowing */
+}
+
+.btn-premium-outline.user-outline:hover {
+    background: #fff0f1; /* Warna latar belakang lembut bila ditekan/sentuh */
+}
