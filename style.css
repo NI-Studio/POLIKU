@@ -697,3 +697,18 @@ body {
 .auth-form {
     gap: 12px !important; /* Asalnya 15px */
 }
+
+/* ================= NAIKKAN BUTANG WELCOME PAGE & MATIKAN SKROL ================= */
+
+#welcome-page {
+    padding-bottom: 0 !important; /* Buang padding yang menyebabkan wujudnya skrol */
+    overflow: hidden !important; /* Kunci skrin supaya tidak boleh diskrol langsung */
+}
+
+#welcome-page .welcome-header {
+    height: 42vh !important; /* Tarik kotak putih naik lebih tinggi (asalnya 50vh) */
+}
+
+#welcome-page .welcome-body {
+    padding: 30px 25px 50px 25px !important; /* Sesuaikan jarak dalam, pastikan bawah ada ruang selamat untuk elak butang navigasi telefon */
+}
