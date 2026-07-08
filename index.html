@@ -92,12 +92,12 @@
             </div>
         </div>
 
-     <!-- ================= HALAMAN DAFTAR (PELANGGAN) ================= -->
+        <!-- ================= HALAMAN DAFTAR (PELANGGAN) ================= -->
         <div id="register-page" class="page auth-page">
             <div class="auth-header">
                 <h2>Daftar Akaun Baru</h2>
             </div>
-            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('login-page');">
+            <form class="auth-form" onsubmit="processRegister(event, 'user');">
                 <div class="input-group">
                     <i class="fa-solid fa-user"></i>
                     <input type="text" placeholder="Nama Penuh" required>
@@ -146,19 +146,22 @@
                 <h1>Poliku Vendor</h1>
                 <p>Urus kedai dan pesanan anda</p>
             </div>
-          <form class="auth-form" onsubmit="processLogin(event, 'rider');">
+            <form class="auth-form" onsubmit="processLogin(event, 'vendor');">
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="E-mel Rider" required>
+                    <input type="email" placeholder="E-mel Rasmi Kedai" required>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" placeholder="Kata Laluan" required>
                 </div>
-                <button type="submit" class="btn-primary btn-rider" style="margin-top:20px;">Log Masuk Rider</button>
+                <div class="forgot-link">
+                    <a href="#" class="vendor-text" onclick="navigateTo('forgot-page')">Lupa Kata Laluan?</a>
+                </div>
+                <button type="submit" class="btn-primary btn-vendor" style="margin-top:10px;">Log Masuk Vendor</button>
                 
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="#" onclick="event.preventDefault(); processGuest('rider');" style="color: #0984e3; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
+                    <a href="#" onclick="event.preventDefault(); processGuest('vendor');" style="color: #ff9f43; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
                 </div>
             </form>
             <div class="auth-footer">
@@ -194,7 +197,7 @@
                 <h1>Poliku Rider</h1>
                 <p>Jana pendapatan dengan menghantar makanan</p>
             </div>
-            <form class="auth-form" onsubmit="event.preventDefault(); navigateTo('rider-dashboard-page');">
+            <form class="auth-form" onsubmit="processLogin(event, 'rider');">
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="email" placeholder="E-mel Rider" required>
@@ -205,9 +208,8 @@
                 </div>
                 <button type="submit" class="btn-primary btn-rider" style="margin-top:20px;">Log Masuk Rider</button>
                 
-                <!-- Teks biasa untuk teroka (Rider) -->
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="#" onclick="event.preventDefault(); navigateTo('rider-dashboard-page');" style="color: #0984e3; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
+                    <a href="#" onclick="event.preventDefault(); processGuest('rider');" style="color: #0984e3; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
                 </div>
             </form>
             <div class="auth-footer">
