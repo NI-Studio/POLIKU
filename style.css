@@ -712,3 +712,138 @@ body {
 #welcome-page .welcome-body {
     padding: 30px 25px 50px 25px !important; /* Sesuaikan jarak dalam, pastikan bawah ada ruang selamat untuk elak butang navigasi telefon */
 }
+
+/* ================= DESIGN: KAD RINGKASAN PESANAN ================= */
+.order-summary-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    border-left: 5px solid #2ed573; /* Hijau menunjukkan status aktif */
+}
+.order-summary-card:active {
+    transform: scale(0.97);
+}
+.order-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.order-id { color: #a4b0be; }
+.order-status-badge {
+    background: #e1f8ea;
+    color: #2ed573;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+.order-summary-body h5 { color: #2f3542; font-size: 15px; margin-bottom: 3px; width: 85%; }
+.order-summary-body .order-date { color: #a4b0be; font-size: 12px; margin-bottom: 8px; }
+.order-summary-body .order-total { color: #ff4757; font-weight: 700; font-size: 14px; }
+.order-items-count { font-weight: normal; color: #747d8c; font-size: 12px; margin-left: 5px; }
+.order-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #dfe4ea;
+    font-size: 16px;
+}
+
+/* ================= DESIGN: BUTIRAN PESANAN (DETAIL PAGE) ================= */
+.tracking-card, .receipt-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+/* Status Timeline */
+.status-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.status-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #a4b0be;
+    font-size: 13px;
+    font-weight: 600;
+}
+.status-step.active {
+    color: #2ed573;
+}
+.status-step i {
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Box Rider */
+.rider-info-box {
+    margin-top: 25px;
+    background: #f1f2f6;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.rider-icon {
+    background: #0984e3;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+.rider-text { flex-grow: 1; }
+.rider-text h5 { color: #2f3542; font-size: 13px; margin-bottom: 2px; }
+.rider-text p { color: #747d8c; font-size: 12px; }
+.rider-call {
+    color: #2ed573;
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+/* Resit Layout */
+.item-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #2f3542;
+}
+.item-row .qty { font-weight: 700; color: #ff4757; width: 35px; }
+.item-row .item-name { flex-grow: 1; padding-right: 10px; }
+.item-row .item-price { font-weight: 600; }
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #747d8c;
+    margin-bottom: 8px;
+}
+.summary-row.total {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2f3542;
+    margin-top: 10px;
+    border-top: 2px dashed #dfe4ea;
+    padding-top: 15px;
+}
