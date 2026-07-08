@@ -41,7 +41,6 @@
                 <p>Pilih peranan anda untuk bermula hari ini.</p>
                 
                 <div class="welcome-buttons">
-                    <!-- Butang pelanggan yang ditukar ke bentuk outline -->
                     <button class="btn-premium-outline user-outline" onclick="navigateTo('login-page')">
                         <i class="fa-solid fa-user"></i> Teroka Makanan (Pelanggan)
                     </button>
@@ -156,7 +155,15 @@
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" placeholder="Kata Laluan" required>
                 </div>
-                <button type="submit" class="btn-primary btn-vendor" style="margin-top:20px;">Log Masuk Vendor</button>
+                <div class="forgot-link">
+                    <a href="#" class="vendor-text" onclick="navigateTo('forgot-page')">Lupa Kata Laluan?</a>
+                </div>
+                <button type="submit" class="btn-primary btn-vendor" style="margin-top:10px;">Log Masuk Vendor</button>
+                
+                <!-- Teks biasa untuk teroka (Vendor) -->
+                <div style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="event.preventDefault(); navigateTo('vendor-dashboard-page');" style="color: #ff9f43; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
+                </div>
             </form>
             <div class="auth-footer">
                 <p>Belum daftar kedai? <a href="#" class="vendor-text" onclick="navigateTo('vendor-register-page')">Daftar Vendor</a></p>
@@ -201,6 +208,11 @@
                     <input type="password" placeholder="Kata Laluan" required>
                 </div>
                 <button type="submit" class="btn-primary btn-rider" style="margin-top:20px;">Log Masuk Rider</button>
+                
+                <!-- Teks biasa untuk teroka (Rider) -->
+                <div style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="event.preventDefault(); navigateTo('rider-dashboard-page');" style="color: #0984e3; font-size: 13px; font-weight: 500; text-decoration: underline;">Pratonton tanpa log masuk</a>
+                </div>
             </form>
             <div class="auth-footer">
                 <p>Belum jadi rider? <a href="#" class="rider-text" onclick="navigateTo('rider-register-page')">Daftar Rider</a></p>
@@ -250,7 +262,6 @@
                     <div class="category-card"><i class="fa-solid fa-bowl-rice"></i><span>Nasi</span></div>
                     <div class="category-card"><i class="fa-solid fa-burger"></i><span>Fast Food</span></div>
                     <div class="category-card"><i class="fa-solid fa-mug-hot"></i><span>Minuman</span></div>
-                    <!-- Kategori yang hilang dikembalikan -->
                     <div class="category-card"><i class="fa-solid fa-ice-cream"></i><span>Manisan</span></div>
                     <div class="category-card"><i class="fa-solid fa-pizza-slice"></i><span>Barat</span></div>
                 </div>
@@ -266,7 +277,6 @@
                             <p><i class="fa-solid fa-star"></i> 4.8 | 15 min | Percuma Penghantaran</p>
                         </div>
                     </div>
-                    <!-- Kedai kedua dikembalikan -->
                     <div class="vendor-card">
                         <div class="vendor-img" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"></div>
                         <div class="vendor-details">
