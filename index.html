@@ -295,21 +295,31 @@
             </div>
         </div>
 
-        <!-- ================= HALAMAN PESANAN (RECEIPT) ================= -->
+        <!-- ================= HALAMAN PESANAN (RECEIPT) - RINGKASAN ================= -->
         <div id="orders-page" class="page main-app-page">
             <div class="home-header">
                 <div class="user-info">
                     <h3>Pesanan Saya 🧾</h3>
-                    <p>Jejak makanan anda di sini</p>
+                    <p>Jejak pesanan terkini anda</p>
                 </div>
             </div>
+            
             <div class="content-section" style="margin-top: 20px;">
-                <div class="vendor-card" style="padding: 15px; border-left: 5px solid #2ed573;">
-                    <h5>Status: Sedang Disediakan 🍳</h5>
-                    <p style="margin: 5px 0;"><strong>Restoran Nasi Kandar Padu</strong></p>
-                    <p>2x Nasi Kandar Ayam Bawang</p>
-                    <p style="margin-top: 10px; color: #ff4757; font-weight: bold;">RM 24.00</p>
+                
+                <!-- Kad Ringkasan Pesanan (Boleh Ditekan) -->
+                <div class="order-summary-card" onclick="navigateTo('order-detail-page')">
+                    <div class="order-summary-header">
+                        <span class="order-id">#ORD-1024</span>
+                        <span class="order-status-badge">Sedang Disediakan</span>
+                    </div>
+                    <div class="order-summary-body">
+                        <h5>Restoran Nasi Kandar Padu</h5>
+                        <p class="order-date">Hari ini, 12:30 PM</p>
+                        <p class="order-total">RM 24.00 <span class="order-items-count">(2 item)</span></p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right order-arrow"></i>
                 </div>
+                
             </div>
             
             <div class="bottom-nav">
@@ -318,6 +328,70 @@
                 <div class="nav-item" onclick="navigateTo('favorites-page')"><i class="fa-solid fa-heart"></i></div>
                 <div class="nav-item" onclick="navigateTo('profile-page')"><i class="fa-solid fa-user"></i></div>
             </div>
+        </div>
+
+        <!-- ================= HALAMAN BUTIRAN PESANAN (DALAMAN ORDER) ================= -->
+        <div id="order-detail-page" class="page main-app-page">
+            <div class="home-header" style="display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-arrow-left" style="font-size: 20px; cursor: pointer;" onclick="navigateTo('orders-page')"></i>
+                <div class="user-info">
+                    <h3>Butiran Pesanan</h3>
+                    <p>#ORD-1024</p>
+                </div>
+            </div>
+
+            <div class="content-section" style="margin-top: 20px; padding-bottom: 40px;">
+                
+                <!-- Bahagian 1: Status & Rider -->
+                <div class="tracking-card">
+                    <h4 style="margin-bottom: 15px;">Status Semasa</h4>
+                    
+                    <div class="status-timeline">
+                        <div class="status-step active"><i class="fa-solid fa-circle-check"></i> Pesanan Diterima Kedai</div>
+                        <div class="status-step active"><i class="fa-solid fa-fire-burner"></i> Sedang Disediakan</div>
+                        <div class="status-step"><i class="fa-solid fa-motorcycle"></i> Rider Mengambil Pesanan</div>
+                        <div class="status-step"><i class="fa-solid fa-house"></i> Pesanan Tiba</div>
+                    </div>
+                    
+                    <!-- Info Rider -->
+                    <div class="rider-info-box">
+                        <div class="rider-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                        <div class="rider-text">
+                            <h5>Lokasi Rider: Ahmad</h5>
+                            <p>Dalam perjalanan ke restoran</p>
+                        </div>
+                        <div class="rider-call">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bahagian 2: Resit Penuh -->
+                <div class="receipt-card" style="margin-top: 20px;">
+                    <h4 style="border-bottom: 1px dashed #dfe4ea; padding-bottom: 10px; margin-bottom: 15px;">Restoran Nasi Kandar Padu</h4>
+                    
+                    <div class="receipt-items">
+                        <div class="item-row">
+                            <span class="qty">2x</span>
+                            <span class="item-name">Nasi Kandar Ayam Bawang</span>
+                            <span class="item-price">RM 20.00</span>
+                        </div>
+                        <div class="item-row">
+                            <span class="qty">1x</span>
+                            <span class="item-name">Teh O Ais Limau</span>
+                            <span class="item-price">RM 2.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-summary" style="border-top: 1px dashed #dfe4ea; padding-top: 15px; margin-top: 15px;">
+                        <div class="summary-row"><p>Subtotal</p><p>RM 22.00</p></div>
+                        <div class="summary-row"><p>Caj Penghantaran</p><p>RM 2.00</p></div>
+                        <div class="summary-row total"><p>Jumlah Bayaran</p><p>RM 24.00</p></div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Tiada bottom nav di sini supaya rasa macam 'modal/pop-up' page sebenar -->
         </div>
 
         <!-- ================= HALAMAN KEGEMARAN (LIKE/HEART) ================= -->
