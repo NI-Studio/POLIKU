@@ -961,9 +961,31 @@ body {
 .nav-item-premium span { font-size: 10px; font-weight: 600; opacity: 0; transition: 0.3s; display: none; }
 .nav-item-premium.active { background: #fff0f1; color: #ff4757; flex-direction: row; }
 .nav-item-premium.active span { display: block; opacity: 1; }
-.inner-page-header { display: flex; align-items: center; justify-content: space-between; padding: 30px 20px 20px; background: white; margin-bottom: 10px; position: sticky; top: 0; z-index: 50; }
-.inner-page-header h3 { font-size: 18px; font-weight: 700; color: #1e272e; flex-grow: 1; text-align: center; }
-.inner-page-header i { font-size: 20px; color: #2f3542; cursor: pointer; }
+
+/* ================= HEADERS UNTUK HALAMAN DALAMAN (PREMIUM RED) ================= */
+.inner-page-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 30px 20px 25px; 
+    background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+    margin-bottom: 15px; 
+    position: sticky; top: 0; z-index: 50;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 5px 20px rgba(255, 71, 87, 0.2);
+}
+.inner-page-header h3 { 
+    font-size: 18px; 
+    font-weight: 700; 
+    color: white; 
+    flex-grow: 1; 
+    text-align: center; 
+}
+.inner-page-header i { 
+    font-size: 20px; 
+    color: white; 
+    cursor: pointer; 
+}
+
 .order-summary-premium { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.03); cursor: pointer; }
 .order-header-row { display: flex; justify-content: space-between; align-items: center; }
 .order-shop-info { display: flex; gap: 15px; align-items: center; }
@@ -994,3 +1016,53 @@ body {
 .receipt-summary-premium { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); margin-top: 20px; }
 .receipt-summary-premium h5 { font-size: 15px; margin-bottom: 15px; color: #1e272e; }
 .checkout-btn { width: 100%; padding: 16px; border-radius: 16px; display: flex; justify-content: center; gap: 10px; font-size: 15px; margin-top: 15px; background: #ff4757; color: white; border: none; font-weight: 600; cursor: pointer; }
+
+/* ================= KEMAS KINI RESIT PESANAN ================= */
+.receipt-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.item-row {
+    display: flex;
+    align-items: flex-start;
+    font-size: 13px;
+    color: #2f3542;
+}
+.item-row .qty {
+    font-weight: 700;
+    color: #ff4757;
+    width: 30px; /* Jarak tetap untuk nombor kuantiti */
+}
+.item-row .item-name {
+    flex-grow: 1; /* Tolak harga jauh ke kanan */
+    padding-right: 10px;
+}
+.item-row .item-price {
+    font-weight: 600;
+    text-align: right;
+}
+
+/* ================= KEMAS KINI TROLI (ASING IKUT KEDAI) ================= */
+.cart-cafe-group {
+    background: white;
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    border: 1px solid #f1f2f6;
+}
+.cart-cafe-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e272e;
+    border-bottom: 1px dashed #dfe4ea;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cart-cafe-title i {
+    color: #ff4757;
+}
